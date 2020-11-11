@@ -13,4 +13,26 @@ var sumOddLengthSubarrays = function(arr, sum=0) {
      return sum;
  };
 
- 
+ const sumOddLengthSubarrays = arr => {
+    let oddLength = 1
+    let sum = 0
+    
+    while(oddLength <= arr.length) {
+        let currentSum = 0
+        
+        for(let i=0; i<oddLength; i++) {
+            currentSum += arr[i]
+        }
+        
+        sum += currentSum
+        
+        for(let i=oddLength; i<arr.length; i++) {
+            currentSum = currentSum + arr[i] - arr[i-oddLength]
+            sum += currentSum
+        }
+        
+        oddLength += 2
+    }
+    
+    return sum
+};
